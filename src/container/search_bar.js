@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { FetchWeather } from "../actions/index";
 
-export default class Search extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = { term: "" };
     this.onInputChange = this.onInputChange.bind(this);
+    this.onSubmitForm = this.onSubmitForm.bind(this);
   }
   onInputChange(event) {
     console.log(event.target.value);
@@ -12,6 +16,8 @@ export default class Search extends Component {
   }
   onSubmitForm(event) {
     event.preventDefault();
+    this.props.FetchWeather(this.state.term);
+    this.setState({ term: "" });
   }
   render() {
     return (
@@ -31,3 +37,12 @@ export default class Search extends Component {
     );
   }
 }
+
+function mapsDispatchToProps(dispatch) {
+  return bindActionCreators({ FetchWeather }, dispatch);
+}
+
+export default connect(
+  null,
+  mapsDispatchToProps
+)(Search);
