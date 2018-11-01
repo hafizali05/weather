@@ -6,8 +6,7 @@ import Axios from "axios";
 export function FetchWeather(city) {
   let URL = `${ROOT_URL}q=${city},uk&APPID=${API_KEY}`;
   const request = Axios.get(URL);
-  request.then(ele => console.log(ele))
-  // console.log("request", request);
+  console.log("request", request);
   return {
     type: FETCH_WEATHER,
     payload: request
