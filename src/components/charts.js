@@ -1,5 +1,5 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import React from "react";
 import {
   Sparklines,
   SparklinesLine,
@@ -19,7 +19,9 @@ export default prop => {
           <SparklinesReferenceLine type="avg" />
         </Sparklines>
       </div>
-      <div>{average(prop.data)}</div>
+      <div>
+        {average(prop.data)} {prop.unit}
+      </div>
     </div>
   );
 };
